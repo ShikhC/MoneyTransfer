@@ -1,6 +1,6 @@
-# CapacityManager
+# MoneyTransfer
 
-How to start the CapacityManager application
+How to start the MoneyTransfer application
 ---
 
 1. Run `mvn clean install` to build your application
