@@ -1,10 +1,10 @@
 server:
   applicationConnectors:
     - type: http
-      port: 29000
+      port: 9000
   adminConnectors:
     - type: http
-      port: 29001
+      port: 9001
   requestLog:
     type: classic
     timeZone: IST
@@ -20,7 +20,7 @@ logging:
   appenders:
     - type: console
     - type: file
-      threshold: ALL
+      threshold: INFO
       timeZone: IST
       logFormat: "%date %level [%thread] %logger{0} [%X{id}] %msg%n"
       currentLogFilename: moneytransfer/moneytransfer.log

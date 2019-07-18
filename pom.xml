@@ -40,7 +40,7 @@
     </dependencies>
 
     <build>
-        <finalName>DropWizardExample-${version}</finalName>
+        <finalName>money-transfer-${version}</finalName>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
