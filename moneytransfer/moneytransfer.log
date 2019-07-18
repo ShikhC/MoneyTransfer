@@ -4282,3 +4282,45 @@ Caused by: java.lang.ClassNotFoundException: javax.servlet.jsp.JspApplicationCon
 2019-07-19 03:40:57,371 INFO [Thread-12] AbstractConnector [] Stopped admin@267d9256{HTTP/1.1,[http/1.1]}{0.0.0.0:9001}
 2019-07-19 03:40:57,373 INFO [Thread-12] ContextHandler [] Stopped i.d.j.MutableServletContextHandler@619b2232{/,null,UNAVAILABLE}
 2019-07-19 03:40:57,377 INFO [Thread-12] ContextHandler [] Stopped i.d.j.MutableServletContextHandler@4bdea421{/,null,UNAVAILABLE}
+2019-07-19 03:43:50,644 INFO [main] DefaultServerFactory [] Registering jersey handler with root path prefix: /
+2019-07-19 03:43:50,645 INFO [main] DefaultServerFactory [] Registering admin handler with root path prefix: /
+2019-07-19 03:43:50,647 INFO [main] AssetsBundle [] Registering AssetBundle with name: swagger-assets for path /swagger-static/*
+2019-07-19 03:43:50,664 INFO [main] AssetsBundle [] Registering AssetBundle with name: swagger-oauth2-connect for path /oauth2-redirect.html/*
+2019-07-19 03:43:50,673 INFO [main] Reflections [] Reflections took 4 ms to scan 1 urls, producing 25 keys and 29 values 
+2019-07-19 03:43:51,065 INFO [main] ServerFactory [] Starting MoneyTransferApplication
+2019-07-19 03:43:51,202 INFO [main] SetUIDListener [] Opened application@69aa7d76{HTTP/1.1,[http/1.1]}{0.0.0.0:9000}
+2019-07-19 03:43:51,202 INFO [main] SetUIDListener [] Opened admin@33f17289{HTTP/1.1,[http/1.1]}{0.0.0.0:9001}
+2019-07-19 03:43:51,205 INFO [main] Server [] jetty-9.4.11.v20180605; built: 2018-06-05T18:24:03.829Z; git: d5fc0523cfa96bfebfbda19606cad384d772f04c; jvm 1.8.0_144-b01
+2019-07-19 03:43:51,780 INFO [main] DropwizardResourceConfig [] The following paths were found for the configured resources:
+
+    GET     /account/{accountId} (com.moneytransfer.demo.resource.AccountResource)
+    POST    /account/{accountId}/addMoney/{amount} (com.moneytransfer.demo.resource.AccountResource)
+    POST    /account/{accountId}/transferMoney/{toAccountId}/{amount} (com.moneytransfer.demo.resource.AccountResource)
+    POST    /account/{userId}/create (com.moneytransfer.demo.resource.AccountResource)
+    GET     /swagger (io.federecio.dropwizard.swagger.SwaggerResource)
+    GET     /swagger.{type:json|yaml} (io.swagger.jaxrs.listing.ApiListingResource)
+    GET     /user/{userId} (com.moneytransfer.demo.resource.UserResource)
+    POST    /user/{userId}/create (com.moneytransfer.demo.resource.UserResource)
+    GET     /user/{userId}/detailed (com.moneytransfer.demo.resource.UserResource)
+    GET     /user/{userId}/transactions/{limit} (com.moneytransfer.demo.resource.UserResource)
+
+2019-07-19 03:43:51,784 INFO [main] ContextHandler [] Started i.d.j.MutableServletContextHandler@342beaf6{/,null,AVAILABLE}
+2019-07-19 03:43:51,792 INFO [main] AdminEnvironment [] tasks = 
+
+    POST    /tasks/log-level (io.dropwizard.servlets.tasks.LogConfigurationTask)
+    POST    /tasks/gc (io.dropwizard.servlets.tasks.GarbageCollectionTask)
+
+2019-07-19 03:43:51,792 WARN [main] AdminEnvironment [] 
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!    THIS APPLICATION HAS NO HEALTHCHECKS. THIS MEANS YOU WILL NEVER KNOW      !
+!     IF IT DIES IN PRODUCTION, WHICH MEANS YOU WILL NEVER KNOW IF YOU'RE      !
+!    LETTING YOUR USERS DOWN. YOU SHOULD ADD A HEALTHCHECK FOR EACH OF YOUR    !
+!         APPLICATION'S DEPENDENCIES WHICH FULLY (BUT LIGHTLY) TESTS IT.       !
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+2019-07-19 03:43:51,798 INFO [main] ContextHandler [] Started i.d.j.MutableServletContextHandler@489110c2{/,null,AVAILABLE}
+2019-07-19 03:43:51,808 INFO [main] AbstractConnector [] Started application@69aa7d76{HTTP/1.1,[http/1.1]}{0.0.0.0:9000}
+2019-07-19 03:43:51,809 INFO [main] AbstractConnector [] Started admin@33f17289{HTTP/1.1,[http/1.1]}{0.0.0.0:9001}
+2019-07-19 03:43:51,810 INFO [main] Server [] Started @3156ms
+2019-07-19 03:44:01,163 INFO [dw-20 - GET /swagger.json] Reflections [] Reflections took 3 ms to scan 1 urls, producing 25 keys and 29 values 
