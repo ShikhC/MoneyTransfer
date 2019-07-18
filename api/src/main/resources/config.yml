@@ -1,0 +1,32 @@
+server:
+  applicationConnectors:
+    - type: http
+      port: 29000
+  adminConnectors:
+    - type: http
+      port: 29001
+  requestLog:
+    type: classic
+    timeZone: IST
+    appenders:
+      - type: file
+        currentLogFilename: moneytransfer/requests.log
+        archive: true
+        archivedLogFilenamePattern: moneytransfer/requests.log.%d{yyyy-MM-dd}
+        archivedFileCount: 50
+
+logging:
+  level: INFO
+  appenders:
+    - type: console
+    - type: file
+      threshold: ALL
+      timeZone: IST
+      logFormat: "%date %level [%thread] %logger{0} [%X{id}] %msg%n"
+      currentLogFilename: moneytransfer/moneytransfer.log
+      archive: true
+      archivedLogFilenamePattern: moneytransfer/moneytransfer.log.%d{yyyy-MM-dd}
+      archivedFileCount: 20
+
+swagger:
+  resourcePackage: com.moneytransfer.demo.resource
