@@ -13,21 +13,24 @@ import com.moneytransfer.demo.data.repository.exception.UserNotFoundInDatabaseEx
 import lombok.extern.slf4j.Slf4j;
 
 import javax.ws.rs.core.Response;
+import java.time.LocalDateTime;
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 
 @Slf4j
 @Singleton
-public class RepositoryService {
+public class RepositoryService implements IRepositoryService {
     Map<String, User> userMap = new ConcurrentHashMap<>();
     Map<String, Account> accountMap = new ConcurrentHashMap<>();
     Map<String, Map<String, List<Transaction>>> userTransactions = new ConcurrentHashMap<>();
     Map<String, Transaction> transactions = new ConcurrentHashMap<>();
 
+    @Override
     public Optional<Account> getAccountViaAccountId(String accountId) {
         return Optional.ofNullable(accountMap.get(accountId));
     }
 
+    @Override
     public Optional<User> getUserViaUserId(String userId) {
         if (userId == null || userId.isEmpty()) {
             throw new UserNotFoundInDatabaseException(userId);
@@ -35,6 +38,7 @@ public class RepositoryService {
         return Optional.ofNullable(userMap.get(userId));
     }
 
+    @Override
     public User save(User user) {
         if (getUserViaUserId(user.getName()).isPresent()) {
             throw new UserAlreadyExistInDatabaseException(user.getName());
@@ -42,6 +46,7 @@ public class RepositoryService {
         return userMap.put(user.getName(), user);
     }
 
+    @Override
     public Optional<User> deleteUser(String userId) {
         Optional<User> user = getUserViaUserId(userId);
         if (user.isPresent()) {
@@ -54,6 +59,7 @@ public class RepositoryService {
         return Optional.empty();
     }
 
+    @Override
     public Optional<Account> deleteAccount(String accountId) {
         Optional<Account> accountViaAccountId = getAccountViaAccountId(accountId);
         if (accountViaAccountId.isPresent()) {
@@ -65,10 +71,14 @@ public class RepositoryService {
         return Optional.empty();
     }
 
+    @Override
     public Account save(Account account) {
         Optional<User> user = getUserViaUserId(account.getAccountHolderName());
         if (user.isPresent()) {
-            user.get().getAccountIds().add(account.getId());
+            LockEntityService.getUserForWrite(user.get(), () -> {
+                user.get().getAccountIds().add(account.getId());
+                user.get().setUpdatedAt(LocalDateTime.now());
+            });
         } else {
             throw new UserNotFoundInDatabaseException(account.getAccountHolderName());
         }
@@ -78,6 +88,7 @@ public class RepositoryService {
         return accountMap.put(account.getId(), account);
     }
 
+    @Override
     public Transaction save(Transaction transaction) {
         Optional<Account> fromAccount = getAccountViaAccountId(transaction.getFromAccountId());
         Optional<Account> toAccount = getAccountViaAccountId(transaction.getToAccountId());
@@ -114,10 +125,12 @@ public class RepositoryService {
         userTransactions.putIfAbsent(account.get().getAccountHolderName(), toTransactionList);
     }
 
+    @Override
     public Optional<Transaction> getTransactionViaTransactionId(String transactionId) {
         return Optional.ofNullable(transactions.get(transactionId));
     }
 
+    @Override
     public Map<String, List<Transaction>> getUserTransactions(String userId, int limit) {
         Map<String, List<Transaction>> userTransactionList = userTransactions.getOrDefault(userId, new HashMap<>());
         Map<String, List<Transaction>> result = new HashMap<>();

@@ -1,10 +1,9 @@
 package com.moneytransfer.demo.data.dao;
 
 
-import com.moneytransfer.demo.data.models.account.Account;
 import com.moneytransfer.demo.data.models.transaction.Transaction;
 import com.moneytransfer.demo.data.models.user.User;
-import com.moneytransfer.demo.data.repository.RepositoryService;
+import com.moneytransfer.demo.data.repository.IRepositoryService;
 import com.moneytransfer.demo.data.repository.exception.AccountNotFoundInDatabaseException;
 import com.moneytransfer.demo.data.repository.exception.UserNotFoundInDatabaseException;
 
@@ -16,8 +15,8 @@ import java.util.Map;
 public class UserDao extends GenericDao<User> {
 
     @Inject
-    public UserDao(RepositoryService repositoryService) {
-        super(repositoryService);
+    public UserDao(IRepositoryService IRepositoryService) {
+        super(IRepositoryService);
     }
 
     @Override

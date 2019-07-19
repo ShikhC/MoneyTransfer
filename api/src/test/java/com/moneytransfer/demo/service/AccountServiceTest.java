@@ -9,6 +9,7 @@ import com.moneytransfer.demo.data.mapper.UserMapper;
 import com.moneytransfer.demo.data.models.account.AccountDetail;
 import com.moneytransfer.demo.data.models.account.exception.AccountInactiveException;
 import com.moneytransfer.demo.data.models.transaction.exception.TransactionFailedException;
+import com.moneytransfer.demo.data.repository.IRepositoryService;
 import com.moneytransfer.demo.data.repository.RepositoryService;
 import com.moneytransfer.demo.data.repository.exception.UserNotFoundInDatabaseException;
 import org.junit.Before;
@@ -28,11 +29,11 @@ public class AccountServiceTest {
 
     @Before
     public void setUp() throws Exception {
-        RepositoryService repositoryService = new RepositoryService();
-        UserDao userDao = new UserDao(repositoryService);
-        AccountDao accountDao = new AccountDao(repositoryService);
+        IRepositoryService IRepositoryService = new RepositoryService();
+        UserDao userDao = new UserDao(IRepositoryService);
+        AccountDao accountDao = new AccountDao(IRepositoryService);
         AccountMapper accountMapper = new AccountMapper();
-        TransactionDao transactionDao = new TransactionDao(repositoryService);
+        TransactionDao transactionDao = new TransactionDao(IRepositoryService);
         TransactionService transactionService = new TransactionService(accountDao, transactionDao);
         TransactionMapper transactionMapper = new TransactionMapper();
         UserMapper userMapper = new UserMapper();

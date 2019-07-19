@@ -13,7 +13,7 @@ import com.moneytransfer.demo.data.repository.LockEntityService;
 import javax.ws.rs.core.Response;
 
 @Singleton
-public class TransactionService {
+public class TransactionService implements ITransactionService {
 
     private AccountDao accountDao;
     private TransactionDao transactionDao;
@@ -24,6 +24,7 @@ public class TransactionService {
         this.transactionDao = transactionDao;
     }
 
+    @Override
     public void execute(Transaction transaction) {
         Account fromAccount = accountDao.get(transaction.getFromAccountId());
         Account toAccount = accountDao.get(transaction.getToAccountId());
@@ -45,6 +46,4 @@ public class TransactionService {
             throw new TransactionFailedException(Response.Status.INTERNAL_SERVER_ERROR, "Transaction status : " + transaction.getTransactionState());
         }
     }
-
-
 }

@@ -10,6 +10,7 @@ import com.moneytransfer.demo.data.models.account.AccountDetail;
 import com.moneytransfer.demo.data.models.transaction.TransactionDetails;
 import com.moneytransfer.demo.data.models.user.UserAccountsInfo;
 import com.moneytransfer.demo.data.models.user.UserDetails;
+import com.moneytransfer.demo.data.repository.IRepositoryService;
 import com.moneytransfer.demo.data.repository.RepositoryService;
 import com.moneytransfer.demo.data.repository.exception.UserAlreadyExistInDatabaseException;
 import com.moneytransfer.demo.data.repository.exception.UserNotFoundInDatabaseException;
@@ -33,12 +34,12 @@ public class UserServiceTest {
 
     @Before
     public void setUp() {
-        RepositoryService repositoryService = new RepositoryService();
-        UserDao userDao = new UserDao(repositoryService);
-        AccountDao accountDao = new AccountDao(repositoryService);
+        IRepositoryService IRepositoryService = new RepositoryService();
+        UserDao userDao = new UserDao(IRepositoryService);
+        AccountDao accountDao = new AccountDao(IRepositoryService);
         AccountMapper accountMapper = new AccountMapper();
-        TransactionDao transactionDao = new TransactionDao(repositoryService);
-        TransactionService transactionService = new TransactionService(accountDao, transactionDao);
+        TransactionDao transactionDao = new TransactionDao(IRepositoryService);
+        ITransactionService transactionService = new TransactionService(accountDao, transactionDao);
         TransactionMapper transactionMapper = new TransactionMapper();
         UserMapper userMapper = new UserMapper();
         accountService = new AccountService(accountDao, accountMapper, transactionService, transactionMapper);

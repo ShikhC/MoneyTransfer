@@ -7,6 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
+import java.util.Objects;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -28,5 +29,19 @@ public class Account {
 
     public Double getAmount() {
         return amount.get();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Account that = (Account) o;
+        return id.equals(that.id) &&
+                accountHolderName.equals(that.accountHolderName);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, accountHolderName);
     }
 }

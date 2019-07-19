@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
 import java.util.Currency;
+import java.util.Objects;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -32,5 +33,21 @@ public class Transaction {
         this.transactionState = transactionState;
         this.createdAt = LocalDateTime.now();
         this.updatedAt = LocalDateTime.now();
+    }
+
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Transaction that = (Transaction) o;
+        return id.equals(that.id) &&
+                fromAccountId.equals(that.fromAccountId) &&
+                toAccountId.equals(that.toAccountId);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, fromAccountId, toAccountId);
     }
 }

@@ -4324,3 +4324,7 @@ Caused by: java.lang.ClassNotFoundException: javax.servlet.jsp.JspApplicationCon
 2019-07-19 03:43:51,809 INFO [main] AbstractConnector [] Started admin@33f17289{HTTP/1.1,[http/1.1]}{0.0.0.0:9001}
 2019-07-19 03:43:51,810 INFO [main] Server [] Started @3156ms
 2019-07-19 03:44:01,163 INFO [dw-20 - GET /swagger.json] Reflections [] Reflections took 3 ms to scan 1 urls, producing 25 keys and 29 values 
+2019-07-19 03:46:36,329 INFO [Thread-12] AbstractConnector [] Stopped application@69aa7d76{HTTP/1.1,[http/1.1]}{0.0.0.0:9000}
+2019-07-19 03:46:36,331 INFO [Thread-12] AbstractConnector [] Stopped admin@33f17289{HTTP/1.1,[http/1.1]}{0.0.0.0:9001}
+2019-07-19 03:46:36,332 INFO [Thread-12] ContextHandler [] Stopped i.d.j.MutableServletContextHandler@489110c2{/,null,UNAVAILABLE}
+2019-07-19 03:46:36,336 INFO [Thread-12] ContextHandler [] Stopped i.d.j.MutableServletContextHandler@342beaf6{/,null,UNAVAILABLE}

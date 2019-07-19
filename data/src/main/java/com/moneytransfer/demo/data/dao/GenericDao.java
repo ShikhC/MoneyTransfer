@@ -1,12 +1,12 @@
 package com.moneytransfer.demo.data.dao;
 
-import com.moneytransfer.demo.data.repository.RepositoryService;
+import com.moneytransfer.demo.data.repository.IRepositoryService;
 
 public abstract class GenericDao<T> {
 
-    protected RepositoryService repositoryService;
+    protected IRepositoryService repositoryService;
 
-    public GenericDao(RepositoryService repositoryService) {
+    public GenericDao(IRepositoryService repositoryService) {
         this.repositoryService = repositoryService;
     }
 

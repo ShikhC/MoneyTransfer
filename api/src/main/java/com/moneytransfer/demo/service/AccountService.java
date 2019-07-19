@@ -21,18 +21,19 @@ import javax.ws.rs.core.Response;
 import java.time.LocalDateTime;
 import java.util.Currency;
 
+
 @Singleton
 public class AccountService implements IAccountService {
 
     private AccountDao accountDao;
     private AccountMapper accountMapper;
-    private TransactionService transactionService;
+    private ITransactionService transactionService;
     private TransactionMapper transactionMapper;
 
     @Inject
     public AccountService(AccountDao accountDao,
                           AccountMapper accountMapper,
-                          TransactionService transactionService,
+                          ITransactionService transactionService,
                           TransactionMapper transactionMapper) {
         this.accountDao = accountDao;
         this.accountMapper = accountMapper;
@@ -41,10 +42,10 @@ public class AccountService implements IAccountService {
     }
 
     @Override
-    public AccountDetail createAccount(String accountHolderName) {
+    public AccountDetail createAccount(String userId) {
         Account account = Account.builder()
                 .id(IdGenerator.getNewAccountId())
-                .accountHolderName(accountHolderName)
+                .accountHolderName(userId)
                 .createdAt(LocalDateTime.now())
                 .updatedAt(LocalDateTime.now())
                 .amount(new AtomicDouble(0.0))

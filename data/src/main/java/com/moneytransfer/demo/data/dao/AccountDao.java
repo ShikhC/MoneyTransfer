@@ -2,7 +2,7 @@ package com.moneytransfer.demo.data.dao;
 
 
 import com.moneytransfer.demo.data.models.account.Account;
-import com.moneytransfer.demo.data.repository.RepositoryService;
+import com.moneytransfer.demo.data.repository.IRepositoryService;
 import com.moneytransfer.demo.data.repository.exception.AccountNotFoundInDatabaseException;
 
 import javax.inject.Inject;
@@ -11,8 +11,8 @@ import javax.inject.Inject;
 public class AccountDao extends GenericDao<Account> {
 
     @Inject
-    public AccountDao(RepositoryService repositoryService) {
-        super(repositoryService);
+    public AccountDao(IRepositoryService IRepositoryService) {
+        super(IRepositoryService);
     }
 
     public Account save(Account account) {
